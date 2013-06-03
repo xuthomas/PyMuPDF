@@ -6,6 +6,8 @@
 Welcome to python-fitz's documentation!
 =======================================
 
+python-fitz is a set of python bindings for `MuPDF <http://www.mupdf.com>`_'s rendering library. The project page is on https://github.com/rk700/python-fitz.
+
 **Contents**
 
 .. toctree::

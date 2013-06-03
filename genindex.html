@@ -76,12 +76,12 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="bbox.html#BBox.__init__">__init__() (BBox method)</a>
+  <dt><a href="context.html#Context.__init__">__init__() (Context method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="context.html#Context.__init__">(Context method)</a>
+  <dt><a href="irect.html#IRect.__init__">(IRect method)</a>
   </dt>
 
         
@@ -127,20 +127,8 @@
   <dt><a href="matrix.html#Matrix.b">b (Matrix attribute)</a>
   </dt>
 
-      
-  <dt><a href="bbox.html#BBox">BBox (built-in class)</a>
-  </dt>
-
-      
-  <dt><a href="textchar.html#TextChar.bbox">bbox (TextChar attribute)</a>
-  </dt>
-
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="rect.html#Rect.bbox_covering_rect">bbox_covering_rect() (Rect method)</a>
-  </dt>
-
       
   <dt><a href="page.html#Page.bound_page">bound_page() (Page method)</a>
   </dt>
@@ -258,7 +246,7 @@
   </dt>
 
       
-  <dt><a href="vars.html#fz_empty_bbox">fz_empty_bbox (built-in variable)</a>
+  <dt><a href="vars.html#fz_empty_irect">fz_empty_irect (built-in variable)</a>
   </dt>
 
       
@@ -282,7 +270,7 @@
   </dt>
 
       
-  <dt><a href="vars.html#fz_infinite_bbox">fz_infinite_bbox (built-in variable)</a>
+  <dt><a href="vars.html#fz_infinite_irect">fz_infinite_irect (built-in variable)</a>
   </dt>
 
       
@@ -360,7 +348,7 @@
   </dt>
 
       
-  <dt><a href="vars.html#fz_unit_bbox">fz_unit_bbox (built-in variable)</a>
+  <dt><a href="vars.html#fz_unit_irect">fz_unit_irect (built-in variable)</a>
   </dt>
 
       
@@ -382,10 +370,6 @@
   </dt>
 
       
-  <dt><a href="pixmap.html#Pixmap.get_bbox">get_bbox() (Pixmap method)</a>
-  </dt>
-
-      
   <dt><a href="pixmap.html#Pixmap.get_colorspace">get_colorspace() (Pixmap method)</a>
   </dt>
 
@@ -402,7 +386,7 @@
   </dt>
 
       
-  <dt><a href="bbox.html#BBox.get_height">get_height() (BBox method)</a>
+  <dt><a href="irect.html#IRect.get_height">get_height() (IRect method)</a>
   </dt>
 
       <dd><dl>
@@ -415,6 +399,10 @@
   </dt>
 
       </dl></dd>
+      
+  <dt><a href="pixmap.html#Pixmap.get_irect">get_irect() (Pixmap method)</a>
+  </dt>
+
       
   <dt><a href="link.html#Link.get_kind">get_kind() (Link method)</a>
   </dt>
@@ -486,7 +474,7 @@
   </dt>
 
       
-  <dt><a href="bbox.html#BBox.get_width">get_width() (BBox method)</a>
+  <dt><a href="irect.html#IRect.get_width">get_width() (IRect method)</a>
   </dt>
 
       <dd><dl>
@@ -506,7 +494,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="bbox.html#BBox.intersect_bbox">intersect_bbox() (BBox method)</a>
+  <dt><a href="irect.html#IRect.intersect_irect">intersect_irect() (IRect method)</a>
   </dt>
 
       
@@ -521,10 +509,22 @@
   <dt><a href="pixmap.html#Pixmap.invert_pixmap">invert_pixmap() (Pixmap method)</a>
   </dt>
 
+      
+  <dt><a href="irect.html#IRect">IRect (built-in class)</a>
+  </dt>
+
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="bbox.html#BBox.is_empty">is_empty() (BBox method)</a>
+  <dt><a href="textchar.html#TextChar.irect">irect (TextChar attribute)</a>
+  </dt>
+
+      
+  <dt><a href="rect.html#Rect.irect_covering_rect">irect_covering_rect() (Rect method)</a>
+  </dt>
+
+      
+  <dt><a href="irect.html#IRect.is_empty">is_empty() (IRect method)</a>
   </dt>
 
       <dd><dl>
@@ -534,7 +534,7 @@
 
       </dl></dd>
       
-  <dt><a href="bbox.html#BBox.is_infinite">is_infinite() (BBox method)</a>
+  <dt><a href="irect.html#IRect.is_infinite">is_infinite() (IRect method)</a>
   </dt>
 
       <dd><dl>
@@ -608,17 +608,17 @@
   </dt>
 
       
-  <dt><a href="context.html#Context.new_pixmap_with_bbox">new_pixmap_with_bbox() (Context method)</a>
+  <dt><a href="context.html#Context.new_pixmap_with_data">new_pixmap_with_data() (Context method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="context.html#Context.new_pixmap_with_bbox_and_data">new_pixmap_with_bbox_and_data() (Context method)</a>
+  <dt><a href="context.html#Context.new_pixmap_with_irect">new_pixmap_with_irect() (Context method)</a>
   </dt>
 
       
-  <dt><a href="context.html#Context.new_pixmap_with_data">new_pixmap_with_data() (Context method)</a>
+  <dt><a href="context.html#Context.new_pixmap_with_irect_and_data">new_pixmap_with_irect_and_data() (Context method)</a>
   </dt>
 
       
@@ -774,7 +774,7 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="matrix.html#Matrix.transform_bbox">transform_bbox() (Matrix method)</a>
+  <dt><a href="matrix.html#Matrix.transform_irect">transform_irect() (Matrix method)</a>
   </dt>
 
       
@@ -796,7 +796,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="bbox.html#BBox.union_bbox">union_bbox() (BBox method)</a>
+  <dt><a href="irect.html#IRect.union_irect">union_irect() (IRect method)</a>
   </dt>
 
       
@@ -852,7 +852,7 @@
   </dt>
 
       
-  <dt><a href="bbox.html#BBox.x0">x0 (BBox attribute)</a>
+  <dt><a href="irect.html#IRect.x0">x0 (IRect attribute)</a>
   </dt>
 
       <dd><dl>
@@ -864,7 +864,7 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="bbox.html#BBox.x1">x1 (BBox attribute)</a>
+  <dt><a href="irect.html#IRect.x1">x1 (IRect attribute)</a>
   </dt>
 
       <dd><dl>
@@ -884,7 +884,7 @@
   </dt>
 
       
-  <dt><a href="bbox.html#BBox.y0">y0 (BBox attribute)</a>
+  <dt><a href="irect.html#IRect.y0">y0 (IRect attribute)</a>
   </dt>
 
       <dd><dl>
@@ -896,7 +896,7 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="bbox.html#BBox.y1">y1 (BBox attribute)</a>
+  <dt><a href="irect.html#IRect.y1">y1 (IRect attribute)</a>
   </dt>
 
       <dd><dl>

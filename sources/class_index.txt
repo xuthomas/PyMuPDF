@@ -3,10 +3,11 @@ Classes
 ===============================
 All the classes are listed here.
 
+
 =============================== =============================================================
 **Class**                       **Short Description**
 =============================== =============================================================
-:ref:`BBox`                     A bounding box with integer corner coordinates.
+:ref:`IRect`                    A bounding box with integer corner coordinates.
 :ref:`Context`                  An object containing global state.
 :ref:`Cookie`                   Simple communication channel.
 :ref:`Device`                   
@@ -30,7 +31,7 @@ All the classes are listed here.
    :maxdepth: 1
    :hidden:
 
-   bbox.rst
+   irect.rst
    context.rst
    cookie.rst
    device.rst
