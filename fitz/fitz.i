@@ -1785,6 +1785,42 @@ fannot._erase()
         }
 
         /*********************************************************************/
+        // createAnnot() - create new annotation and return it
+        /*********************************************************************/
+        FITZEXCEPTION(createAnnot, !result)
+        CLOSECHECK(createAnnot, self.parent.isClosed)
+        struct fz_annot_s *createAnnot(int type, struct fz_rect_s *rect, float width = 1)
+        {
+            pdf_page *page = pdf_page_from_fz_page(gctx, $self);
+            struct pdf_annot_s *annot;
+            fz_annot *fannot;
+            fz_display_list *dl;
+            fz_try(gctx)
+            {
+                if (!page) fz_throw(gctx, FZ_ERROR_GENERIC, "not a PDF");
+                annot = pdf_create_annot(gctx, page, type);
+                fannot = &annot->super;
+                fz_rect *mbox = (fz_rect *)malloc(sizeof(fz_rect));
+                fz_bound_page(gctx, $self, mbox);
+                pdf_set_annot_border(gctx, annot, width);
+                pdf_set_annot_rect(gctx, annot, rect);
+                float c[4];
+                c[0] = c[1] = c[2] = c[3] = 0.0;      // black
+                pdf_set_annot_color(gctx, annot, 3, c);
+                c[0] = c[1] = c[2] = c[3] = 1.0;      // white
+                pdf_set_annot_interior_color(gctx, annot, 3, c);
+                //dl = fz_new_display_list_from_page_contents(gctx, $self);
+                dl = fz_new_display_list_from_annot(gctx, &annot->super);
+                pdf_set_annot_appearance(gctx, page->doc, annot, rect, dl);
+                fz_drop_display_list(gctx, dl);
+                pdf_update_appearance(gctx, page->doc, annot);
+                free(mbox);
+            }
+            fz_catch(gctx) return NULL;
+            return fannot;
+        }
+
+        /*********************************************************************/
         // rotation - return page rotation
         /*********************************************************************/
         PARENTCHECK(rotation)

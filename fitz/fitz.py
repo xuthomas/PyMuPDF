@@ -1008,6 +1008,13 @@ class Page(_object):
 
         return val
 
+    def createAnnot(self, type, rect, width=1):
+        """createAnnot(Page self, int type, Rect rect, float width=1) -> Annot"""
+        if self.parent.isClosed:
+            raise ValueError("operation illegal for closed doc")
+
+        return _fitz.Page_createAnnot(self, type, rect, width)
+        
     @property
 
     def rotation(self):

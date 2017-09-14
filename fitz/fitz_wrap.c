@@ -6885,6 +6885,35 @@ SWIGINTERN struct fz_pixmap_s *new_fz_pixmap_s__SWIG_1(struct fz_colorspace_s *c
             fz_catch(gctx) return NULL;
             return pm;
         }
+SWIGINTERN struct fz_annot_s *fz_page_s_createAnnot(struct fz_page_s *self,int type,struct fz_rect_s *rect,float width){
+            pdf_page *page = pdf_page_from_fz_page(gctx, self);
+            struct pdf_annot_s *annot;
+            fz_annot *fannot;
+            fz_display_list *dl;
+            fz_try(gctx)
+                {
+                if (!page) fz_throw(gctx, FZ_ERROR_GENERIC, "not a PDF");
+                annot = pdf_create_annot(gctx, page, type);
+                fannot = &annot->super;
+                fz_rect *mbox = (fz_rect *)malloc(sizeof(fz_rect));
+                fz_bound_page(gctx, self, mbox);
+                pdf_set_annot_border(gctx, annot, width);
+                pdf_set_annot_rect(gctx, annot, rect);
+                float c[4];
+                c[0] = c[1] = c[2] = c[3] = 0.0;      // black
+                pdf_set_annot_color(gctx, annot, 3, c);
+                c[0] = c[1] = c[2] = c[3] = 1.0;      // white
+                pdf_set_annot_interior_color(gctx, annot, 3, c);
+                //dl = fz_new_display_list_from_page_contents(gctx, self);
+                dl = fz_new_display_list_from_annot(gctx, &annot->super);
+                pdf_set_annot_appearance(gctx, page->doc, annot, rect, dl);
+                fz_drop_display_list(gctx, dl);
+                pdf_update_appearance(gctx, page->doc, annot);
+                free(mbox);
+                }
+            fz_catch(gctx) return NULL;
+            return fannot;
+        }
 SWIGINTERN struct fz_pixmap_s *new_fz_pixmap_s__SWIG_2(struct fz_colorspace_s *cs,int w,int h,PyObject *samples,int alpha){
             char *data = NULL;
             size_t size = 0;
@@ -10242,6 +10271,63 @@ SWIGINTERN PyObject *_wrap_Page_deleteAnnot(PyObject *SWIGUNUSEDPARM(self), PyOb
   }
   arg2 = (struct fz_annot_s *)(argp2);
   result = (struct fz_annot_s *)fz_page_s_deleteAnnot(arg1,arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_fz_annot_s, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_Page_createAnnot(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct fz_page_s *arg1 = (struct fz_page_s *) 0 ;
+  int arg2 ;
+  struct fz_rect_s *arg3 = (struct fz_rect_s *) 0 ;
+  float arg4 = (float) 1 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  float val4 ;
+  int ecode4 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  PyObject * obj2 = 0 ;
+  PyObject * obj3 = 0 ;
+  struct fz_annot_s *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OOO|O:Page_createAnnot",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_fz_page_s, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Page_createAnnot" "', argument " "1"" of type '" "struct fz_page_s *""'"); 
+  }
+  arg1 = (struct fz_page_s *)(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Page_createAnnot" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = (int)(val2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3,SWIGTYPE_p_fz_rect_s, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Page_createAnnot" "', argument " "3"" of type '" "struct fz_rect_s *""'"); 
+  }
+  arg3 = (struct fz_rect_s *)(argp3);
+  if (obj3) {
+    ecode4 = SWIG_AsVal_float(obj3, &val4);
+    if (!SWIG_IsOK(ecode4)) {
+      SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Page_createAnnot" "', argument " "4"" of type '" "float""'");
+    } 
+    arg4 = (float)(val4);
+  }
+  {
+    result = (struct fz_annot_s *)fz_page_s_createAnnot(arg1,arg2,arg3,arg4);
+    if(!result) {
+      PyErr_SetString(PyExc_Exception, gctx->error->message);
+      return NULL;
+    }
+  }
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_fz_annot_s, 0 |  0 );
   return resultobj;
 fail:
@@ -17003,6 +17089,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"Page_getDisplayList", _wrap_Page_getDisplayList, METH_VARARGS, (char *)"Page_getDisplayList(self) -> DisplayList"},
 	 { (char *)"Page_loadLinks", _wrap_Page_loadLinks, METH_VARARGS, (char *)"Page_loadLinks(self) -> Link"},
 	 { (char *)"Page_firstAnnot", _wrap_Page_firstAnnot, METH_VARARGS, (char *)"firstAnnot points to first annot on page"},
+   { (char *)"Page_createAnnot", _wrap_Page_createAnnot, METH_VARARGS, (char *)"Page_createAnnot(Page self, int type, Rect rect, float width=1) -> Annot"},
 	 { (char *)"Page_deleteLink", _wrap_Page_deleteLink, METH_VARARGS, (char *)"Delete link if PDF"},
 	 { (char *)"Page_deleteAnnot", _wrap_Page_deleteAnnot, METH_VARARGS, (char *)"Delete annot if PDF and return next one"},
 	 { (char *)"Page_rotation", _wrap_Page_rotation, METH_VARARGS, (char *)"Retrieve page rotation."},

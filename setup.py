@@ -6,7 +6,7 @@ if sys.platform.startswith('linux'):
     module = Extension('fitz._fitz', # name of the module
                        ['fitz/fitz_wrap.c'], # C source file
                        include_dirs=[  # we need the path of the MuPDF and zlib headers
-                                     '/usr/include/mupdf',
+                                     #'/usr/include/mupdf',
                                      '/usr/local/include/mupdf',
                                      '/usr/local/thirdparty/zlib',
                                     ],
@@ -14,7 +14,7 @@ if sys.platform.startswith('linux'):
                        libraries=[
                            'mupdf',
                            'crypto', #openssl is required by mupdf on archlinux
-                           'jbig2dec', 'openjp2', 'jpeg', 'freetype',
+                           'openjp2', 'jpeg',# 'freetype',
                            'mupdfthird',
                            ], # the libraries to link with
                       )
